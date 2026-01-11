@@ -11,54 +11,62 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* **M.S. in Cybersecurity**, University of Maryland, Baltimore County, May 2025
+  * GPA: 4.0/4.0
+  * Focus: Agentic AI and Security
 
-Work experience
+* **B.Tech. in Electronics and Communications Engineering**, Guru Nanak Institutions Technical Campus, August 2022
+  * GPA: 3.6/4.0 (8.84/10)
+
+Work Experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **Software Engineering Intern**, RootsID LLC, Baltimore, MD (Feb 2025 - May 2025)
+  * Refactored JavaScript/TypeScript pilot codebase into 5+ reusable Node.js packages with modular architecture following OOP principles, reducing development time by 30% and eliminating 200+ lines of duplicate code
+  * Orchestrated containerized deployment for 4+ microservices across distributed Linux environments, optimizing inter-service communication and reducing system setup latency by 25% through automated Docker Compose workflows
+  * Debugged and resolved 15+ critical issues across 3 Node.js microservices using Git version control and systematic testing, reducing system crashes by 30% and improving user verification success rate
+  * Developed secure file upload feature using JavaScript and RESTful API design, enabling 100+ users to process and sign documents in-browser with KERI-based credentials
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **Security Engineering Intern**, Tenable Network Security, Baltimore, MD (June 2024 - August 2024)
+  * Developed Python-based Slack bot with asynchronous RESTful API integration for automated lookups across 8 repositories, reducing response time from 3-5 days to under 24 hours and improving efficiency by 80%
+  * Containerized application using Docker with comprehensive unit testing in Python, implementing 50+ tests, achieving 95% code coverage for production reliability
+  * Built Jenkins-based CI/CD pipeline integrated with Git for automated builds, testing, and deployment, reducing manual effort by 40% and supporting scalable rollout of internal tools
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+* **Software Engineer**, Concentrix Catalyst, Hyderabad, IN (March 2022 - June 2023)
+  * Contributed to the core architecture of 4 full-stack applications, delivering high-impact features across the complete product lifecycle
+  * Collaborated with a 5-person cross-functional team to build a dynamic article landing page system in Adobe Experience Manager (AEM)
+  * Created modular AEM templates that empowered 8+ non-technical authors to launch high-traffic landing pages independently through dynamic JSON data retrieval
+  * Optimized user experience by implementing asynchronous content loading via AJAX, ensuring seamless data rendering and faster page load speeds
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* **Languages**
+  * Python, TypeScript, JavaScript, HTML5, CSS, Bash
 
-Publications
+* **Frontend Development**
+  * React, Next.js, Tailwind CSS, Context API, React Hooks
+
+* **Backend Development**
+  * Node.js, Express.js, FastAPI, RESTful APIs, WebSocket, Socket.IO
+
+* **Infrastructure & Tools**
+  * Docker, Docker Compose, Jenkins, Git, CI/CD, Linux, Playwright
+
+* **AI & Security**
+  * LangChain, CrewAI, PyTorch, Scapy, CompTIA Security+, Splunk, Nmap
+  * Multi-Agent Systems, Model Context Protocol (MCP)
+  * Offensive & Defensive Security, Web Application Security
+  * OSINT, Vulnerability Assessment, Penetration Testing
+
+Research Interests
 ======
-  <ul>{% for post in site.publications reversed %}
+* AI agents for offensive and defensive security
+* Security of agentic AI systems
+* Automated vulnerability discovery
+* Multi-agent security architectures
+* Adversarial AI and prompt injection defense
+
+Projects
+======
+  <ul>{% for post in site.portfolio reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
