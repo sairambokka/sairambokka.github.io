@@ -2,19 +2,22 @@
    DARK THEME
    ========================================================================== */
 
-/* Color codes used for the theme */
+/* Color codes used for the theme - Modern refined palette */
 $gray                       : #7a8288;
 $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : mix(#fff, $gray, 50%);
 
-$background                 : #474747;
-$background-light           : mix(#fff, $background, 80%);
-$background-lighter         : mix(#fff, $background, 90%);
+// Pure black dark mode for OLED-friendly aesthetics
+$background                 : #000000;
+$background-elevated        : #0a0a0a;
+$background-light           : #141414;
+$background-lighter         : #1f1f1f;
 $text                       : #ffffff;
-$link                       : #0ea1c5;
-$link-dark                  : mix(#000, $link, 25%);
-$link-light                 : mix(#fff, $link, 25%);
+$text-secondary             : #a0a0a0;
+$link                       : #3eb9d9;
+$link-dark                  : #2a93b3;
+$link-light                 : #5fc9e6;
 
 /* Color codes used for the site */
 $danger-color               : #ee5f5b;
@@ -33,22 +36,46 @@ $navicon-height             : 4px;
 $sidebar-link-max-width     : 250px;
 $sidebar-screen-min-width   : 1024px;
 
-/* Dark theme for the site */
+/* Dark theme for the site - Modern refined aesthetics */
 html[data-theme="dark"] {
     --global-base-color                 : #{$background};
     --global-bg-color                   : #{$background};
-    --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
-    --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
-    --global-fig-caption-color          : #{$light-gray};
+    --global-footer-bg-color            : #{$background-elevated};
+    --global-border-color               : rgba(255, 255, 255, 0.08);
+    --global-dark-border-color          : rgba(255, 255, 255, 0.12);
+    --global-code-background-color      : #{$background-light};
+    --global-code-text-color            : #{$text};
+    --global-fig-caption-color          : #{$text-secondary};
     --global-link-color                 : #{$link};
-    --global-link-color-hover           : #{$link-dark};
-    --global-link-color-visited         : #{$link-light};
+    --global-link-color-hover           : #{$link-light};
+    --global-link-color-visited         : #{$link-dark};
     --global-masthead-link-color        : #{$text};
-    --global-masthead-link-color-hover  : #{$background-light};
+    --global-masthead-link-color-hover  : #{$link};
     --global-text-color                 : #{$text};
-    --global-text-color-light           : #f3f3f3;
-    --global-thead-color                : #{$background-lighter};
+    --global-text-color-light           : #{$text-secondary};
+    --global-thead-color                : #{$background-light};
+
+    // Enhanced dark mode specifics
+    .masthead {
+        background-color: rgba(0, 0, 0, 0.85) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .archive__item {
+        background: #{$background-elevated};
+        border-color: rgba(255, 255, 255, 0.08);
+
+        &:hover {
+            border-color: rgba(255, 255, 255, 0.12);
+            box-shadow:
+                0 4px 12px rgba(0, 0, 0, 0.3),
+                0 8px 24px rgba(0, 0, 0, 0.2),
+                0 0 0 1px rgba(255, 255, 255, 0.08);
+        }
+    }
+
+    .page__footer {
+        background: #{$background-elevated};
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
 }
