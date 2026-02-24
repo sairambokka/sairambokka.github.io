@@ -20,6 +20,11 @@ Education
 
 Work Experience
 ======
+* **Software Engineering Intern**, Corca Research Inc, Remote (Dec 2025 - Present)
+  * Expanding Phantom Hints (tab-to-autocomplete) functionality for a SymPy-powered math engine deployed on the frontend via WebAssembly, broadening hint coverage across integrals, derivatives, functions, sets, and other expression types
+  * Engineered support for 20+ new mathematical hint categories by extending the SymPy parsing and suggestion pipeline, improving autocomplete accuracy for complex symbolic math workflows
+  * Integrated the WebAssembly module on the frontend to ensure seamless rendering and low-latency hint delivery within the browser-based math editor
+
 * **Software Engineering Intern**, RootsID LLC, Baltimore, MD (Feb 2025 - May 2025)
   * Refactored JavaScript/TypeScript pilot codebase into 5+ reusable Node.js packages with modular architecture following OOP principles, reducing development time by 30% and eliminating 200+ lines of duplicate code
   * Orchestrated containerized deployment for 4+ microservices across distributed Linux environments, optimizing inter-service communication and reducing system setup latency by 25% through automated Docker Compose workflows
