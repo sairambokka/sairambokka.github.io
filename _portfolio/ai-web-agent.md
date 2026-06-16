@@ -5,7 +5,7 @@ collection: portfolio
 slug: "webagent"
 stat: "automation"
 tech: ["python", "fastapi", "mcp"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/ai-web-agent"
 order: 7
 ---
 

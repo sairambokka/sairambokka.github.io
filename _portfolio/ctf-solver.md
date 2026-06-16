@@ -5,7 +5,7 @@ collection: portfolio
 slug: "ctf"
 stat: "agentic"
 tech: ["langchain", "nmap"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/ctf-solver-langchain"
 order: 5
 ---
 

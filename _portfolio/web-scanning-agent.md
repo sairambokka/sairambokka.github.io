@@ -5,7 +5,7 @@ collection: portfolio
 slug: "webscan"
 stat: "security"
 tech: ["playwright", "claude"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/web-scanning-ai-agent"
 order: 4
 ---
 

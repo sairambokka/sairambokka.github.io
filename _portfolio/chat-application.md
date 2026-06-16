@@ -5,7 +5,7 @@ collection: portfolio
 slug: "chat"
 stat: "<100ms"
 tech: ["node", "socket.io", "react"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/Real-Time-Chat-App"
 order: 8
 ---
 
@@ -79,3 +79,5 @@ A production-ready, real-time messaging platform built with modern web technolog
 - **Security**: OAuth2 + JWT authentication
 
 This project demonstrates expertise in building scalable, real-time web applications with modern JavaScript frameworks and secure authentication mechanisms.
+
+[View on GitHub](https://github.com/sairambokka/Real-Time-Chat-App)

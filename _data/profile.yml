@@ -13,7 +13,7 @@ typewriter:
   - "> and the security to back them"
 about:
   - "I'm a software engineer who ships products end to end, from frontend to backend to infra, and builds autonomous AI agents with a security mindset baked in."
-  - "At Corca Research I work on a SymPy-powered math engine that runs in the browser over WebAssembly, building tab-to-autocomplete hints across 20+ kinds of symbolic math."
+  - "At Corca Research I work on a SymPy/NumPy math engine that runs in the browser over WebAssembly — building tab-to-autocomplete hints across symbolic and numeric math, plus editor features like a Notion-style slash-command menu."
   - "Earlier: identity microservices at RootsID, security tooling at Tenable, full-stack at Concentrix. MS in Cybersecurity from UMBC and a CyberDawgs member."
 education:
   - degree: "M.S. Cybersecurity"

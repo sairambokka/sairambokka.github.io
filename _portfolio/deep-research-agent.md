@@ -5,7 +5,7 @@ collection: portfolio
 slug: "research"
 stat: "rag"
 tech: ["langchain", "mcp"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/langchain-deep-research-agent"
 order: 6
 ---
 

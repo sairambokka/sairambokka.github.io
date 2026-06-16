@@ -20,10 +20,17 @@ Education
 
 Work Experience
 ======
-* **Software Engineering Intern**, Corca Research Inc, Remote (Dec 2025 - Present)
-  * Expanding Phantom Hints (tab-to-autocomplete) functionality for a SymPy-powered math engine deployed on the frontend via WebAssembly, broadening hint coverage across integrals, derivatives, functions, sets, and other expression types
-  * Engineered support for 20+ new mathematical hint categories by extending the SymPy parsing and suggestion pipeline, improving autocomplete accuracy for complex symbolic math workflows
-  * Integrated the WebAssembly module on the frontend to ensure seamless rendering and low-latency hint delivery within the browser-based math editor
+* **Fullstack Software Engineer**, Corca Research Inc, Baltimore, MD (Jun 2026 - Present)
+  * Promoted from Engineering Intern to full-time after shipping core editor features in the first months; delivered 65+ merged pull requests (~20K lines across 450+ files) on the math engine and editor, working test-first (TDD)
+  * Shipped a NumPy + Plotly data-analysis subsystem in the math engine — users select arrays or matrices and generate 8+ interactive chart types (histogram, boxplot, scatter, FFT, polynomial fit) and descriptive statistics, entirely in-browser via Pyodide
+  * Owned the Phantom Hints (tab-to-autocomplete) engine end to end — multi-line variable context propagation, unit carry-through, and hint ordering across 10+ math domains including statistics, matrix operations, set theory, inequalities, limits, and Taylor series
+  * Extended the in-browser SymPy transpiler with 15+ new function classes (exotic/hyperbolic trig, 10 statistical measures, set theory, matrix det/inv/transpose) without touching existing solve paths
+  * Designed a non-invasive unit-preservation pipeline — extracting dimensional units before the SymPy solver and reattaching them after computation — adding unit support to variables, constants, and the object panel across 8 PRs
+  * Built a Notion-style slash-command block menu (12 block types) backed by 34 unit and integration tests, and diagnosed/fixed a class of silent SymPy code-generation failures (constant-as-function migration bug, CRootOf complex-conjugate collapse, float-to-rational precision loss)
+
+* **Engineering Intern**, Corca Research Inc, Baltimore, MD (Jan 2026 - Jun 2026)
+  * Integrated the SymPy/NumPy math engine into the frontend over WebAssembly (Pyodide) for low-latency, in-browser symbolic computation
+  * Built the context-based Phantom Hint system and upgraded SymPy solve to handle variable domains (solveset) and systems of variables, driven test-first with an expanded Playwright e2e suite
 
 * **Software Engineering Intern**, RootsID LLC, Baltimore, MD (Feb 2025 - May 2025)
   * Refactored JavaScript/TypeScript pilot codebase into 5+ reusable Node.js packages with modular architecture following OOP principles, reducing development time by 30% and eliminating 200+ lines of duplicate code

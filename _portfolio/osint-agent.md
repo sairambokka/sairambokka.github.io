@@ -5,7 +5,7 @@ collection: portfolio
 slug: "osint"
 stat: "multi-agent"
 tech: ["langchain", "crewai"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/OSINT-Agent-Orchestration"
 order: 3
 ---
 

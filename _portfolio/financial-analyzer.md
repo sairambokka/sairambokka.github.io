@@ -5,7 +5,7 @@ collection: portfolio
 slug: "finance"
 stat: "full-stack"
 tech: ["next.js", "claude"]
-github: "https://github.com/sairambokka"
+github: "https://github.com/sairambokka/financial-analyzer"
 order: 9
 ---
 
@@ -28,3 +28,5 @@ A full-stack financial analysis platform that leverages the Claude AI API to pro
 - **Language**: TypeScript
 
 This project demonstrates expertise in building AI-integrated full-stack applications with modern web frameworks and cloud-native deployment practices.
+
+[View on GitHub](https://github.com/sairambokka/financial-analyzer)
