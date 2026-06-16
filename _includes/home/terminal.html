@@ -1,0 +1,21 @@
+<!-- terminal overlay (hidden until launched) -->
+<div id="terminal-overlay" class="hidden fixed inset-0 z-50">
+  <div class="term-crt"></div>
+  <div class="term-win" id="term-win">
+    <div class="term-bar" id="term-bar">
+      <div class="flex gap-2 items-center term-dots">
+        <button class="term-dot term-r" id="btn-close" title="close" aria-label="close terminal"><span class="term-ic">&times;</span></button>
+        <button class="term-dot term-y" id="btn-min" title="minimize" aria-label="minimize terminal"><span class="term-ic">&minus;</span></button>
+        <button class="term-dot term-g" id="btn-full" title="fullscreen" aria-label="toggle fullscreen"><span class="term-ic">&#10530;</span></button>
+      </div>
+      <span class="term-title">visitor@portfolio: <b>~</b> — zsh</span>
+    </div>
+    <div class="term-body" id="term"></div>
+    <div class="term-hint">
+      <span><b>help</b> · <b>about</b> · <b>projects</b> · <b>sumfetch</b></span>
+      <span><b>Tab</b> complete (×2 = list)</span>
+      <span><b>↑↓</b> history</span>
+      <span><b>Ctrl+L</b> clear · <b>Ctrl+C</b> cancel · <b>Esc</b> close</span>
+    </div>
+  </div>
+</div>

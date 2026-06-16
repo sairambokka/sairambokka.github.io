@@ -2,6 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  /* ---- terminal window chrome (ported from A-terminal mockup) ---- */
+  .term-crt { position:fixed; inset:0; pointer-events:none; z-index:30;
+    background:repeating-linear-gradient(0deg,rgba(0,0,0,.12) 0 1px,transparent 1px 3px);
+    mix-blend-mode:multiply; opacity:.5; }
+  .term-win { position:absolute; inset:24px; border:1px solid #1c2430; border-radius:10px;
+    background:linear-gradient(180deg,rgba(20,26,36,.98),rgba(10,14,20,.99));
+    box-shadow:0 30px 80px rgba(0,0,0,.6); display:flex; flex-direction:column; overflow:hidden;
+    font-family:"JetBrains Mono",ui-monospace,Menlo,monospace; font-size:15px; line-height:1.65; color:#c5d1de; }
+  .term-win.min { inset:auto 24px 24px 24px; height:38px; }
+  .term-win.min .term-body, .term-win.min .term-hint { display:none; }
+  .term-win.min .term-bar { cursor:pointer; }
+  .term-win.min .term-title::after { content:" — click to restore"; color:#3ddc97; }
+  .term-bar { height:38px; flex:0 0 38px; background:#11161f; border-bottom:1px solid #1c2430;
+    display:flex; align-items:center; padding:0 14px; gap:8px; user-select:none; }
+  .term-dot { width:13px; height:13px; border-radius:50%; border:0; padding:0; cursor:pointer; position:relative;
+    display:flex; align-items:center; justify-content:center; font-size:9px; line-height:1; color:rgba(0,0,0,.55); }
+  .term-ic { opacity:0; transition:opacity .15s; font-weight:700; }
+  .term-dots:hover .term-ic { opacity:1; }
+  .term-r { background:#ff5f56; } .term-y { background:#ffbd2e; } .term-g { background:#27c93f; }
+  .term-dot:focus-visible { outline:2px solid #fff; outline-offset:2px; }
+  .term-title { margin-left:10px; color:#5c6773; font-size:12px; }
+  .term-title b { color:#3ddc97; }
+  .term-body { flex:1; overflow-y:auto; padding:18px 20px; scroll-behavior:smooth; }
+  .term-body .line { white-space:pre-wrap; word-break:break-word; }
+  .term-hint { flex:0 0 auto; border-top:1px solid #1c2430; background:#0d121a; color:#5c6773;
+    font-size:11.5px; padding:7px 16px; display:flex; gap:18px; flex-wrap:wrap; }
+  .term-hint b { color:#3ddc97; }
+  /* terminal text colors */
+  .t-muted{color:#5c6773}.t-green{color:#4ec9b0}.t-cyan{color:#56b6c2}.t-pink{color:#e06c75}
+  .t-yellow{color:#e5c07b}.t-blue{color:#61afef}.t-prompt{color:#98c379}.t-b{font-weight:700}
+  .term-body a{color:#61afef;text-decoration:none;border-bottom:1px dotted #61afef}
+  .term-body a:hover{color:#4ec9b0;border-color:#4ec9b0}
+  .ps1{color:#98c379;white-space:pre}
+  #cmd{background:transparent;border:0;outline:0;color:#c5d1de;font:inherit;flex:1;caret-color:transparent}
+  .inputline{display:flex;align-items:center}
+  .cursor{display:inline-block;width:9px;height:18px;background:#4ec9b0;vertical-align:-3px;
+    animation:tblink 1s steps(1) infinite;margin-left:1px}
+  @keyframes tblink{50%{opacity:0}}
+  .ascii{color:#4ec9b0;font-size:12px;line-height:1.2}
+}
+
 @layer utilities {
   /* effects Tailwind utilities can't express — keep minimal */
   .glitch { position: relative; }

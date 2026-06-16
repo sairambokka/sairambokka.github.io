@@ -1,0 +1,124 @@
+{% assign p = site.data.profile %}
+
+<main class="max-w-[1040px] mx-auto px-[26px]">
+
+<!-- ABOUT -->
+<section id="about" class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ cat about.md</span></div>
+  <div class="grid md:grid-cols-[1.4fr_0.8fr] gap-10 items-start">
+    <div class="reveal">
+      <h2 class="font-disp font-semibold text-[clamp(26px,4vw,40px)] tracking-[-0.02em] mb-[10px]">Fullstack first, security mind always.</h2>
+      {% for para in p.about %}
+      <p class="text-fg text-[17px] mb-4">{{ para }}</p>
+      {% endfor %}
+    </div>
+    <div class="reveal bg-panel border border-line border-l-[3px] border-l-term rounded-xl p-5 font-mono text-[13.5px]">
+      <div class="text-term text-[11px] tracking-[0.12em] uppercase mb-[10px]">// current.status</div>
+      <div class="my-[7px]"><span class="text-fg font-bold">role</span> &nbsp;<span class="text-dim">Fullstack SWE @ Corca</span></div>
+      <div class="my-[7px]"><span class="text-fg font-bold">stack</span> <span class="text-dim">Node · Next.js · WASM · TS</span></div>
+      <div class="my-[7px]"><span class="text-fg font-bold">study</span> <span class="text-dim">MS Cybersecurity, UMBC</span></div>
+      <div class="my-[7px]"><span class="text-fg font-bold">loc</span> &nbsp;&nbsp;<span class="text-dim">{{ p.location }}</span></div>
+      <div class="my-[7px]"><span class="text-fg font-bold">open</span> &nbsp;<span class="text-term">to SWE roles ✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~/projects $ ls -la</span> <span class="text-dimmer text-[12.5px]"># builds — agents, security, full-stack</span></div>
+  <div class="grid [grid-template-columns:repeat(auto-fill,minmax(290px,1fr))] gap-[18px]">
+    {% assign sorted = site.portfolio | sort: "order" %}
+    {% for proj in sorted %}
+    <a href="{{ proj.url | relative_url }}" class="reveal group relative bg-panel border border-line rounded-[14px] p-[22px] overflow-hidden transition hover:-translate-y-[5px] hover:border-term hover:shadow-[0_16px_46px_rgba(0,0,0,0.5)] no-underline">
+      <div class="flex justify-between items-center mb-3">
+        <span class="font-mono text-[11.5px] text-dim">{{ proj.slug }}{% if proj.tech contains "typescript" or proj.tech contains "next.js" or proj.tech contains "react" or proj.tech contains "node" %}.ts{% else %}.py{% endif %}</span>
+        <span class="font-mono text-[11px] text-term border border-term/30 rounded-[5px] px-[7px] py-[2px]">{{ proj.stat }}</span>
+      </div>
+      <h3 class="font-disp font-semibold text-[19px] mb-2 tracking-[-0.01em] text-fg">{{ proj.title }}</h3>
+      <p class="text-dim text-sm mb-4">{{ proj.excerpt | strip_html }}</p>
+      <div class="flex gap-[7px] flex-wrap">
+        {% for t in proj.tech %}<span class="font-mono text-[11px] text-link bg-link/10 border border-link/20 rounded-[5px] px-2 py-[3px]">{{ t }}</span>{% endfor %}
+      </div>
+      <span class="absolute right-5 bottom-[18px] text-term opacity-0 -translate-x-1 transition group-hover:opacity-100 group-hover:translate-x-0">→</span>
+    </a>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="work" class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ tail -f experience.log</span></div>
+  <div class="flex flex-col">
+    {% for j in site.data.experience %}
+    <div class="reveal grid md:grid-cols-[150px_1fr] gap-6 py-6 border-b border-line last:border-0">
+      <div class="font-mono text-[13px] text-dim">
+        {% if j.current %}<span class="inline-flex items-center gap-[6px] text-term"><i class="w-[7px] h-[7px] rounded-full bg-term shadow-[0_0_8px_#3ddc97] animate-pulse"></i> {{ j.when }}</span>{% else %}{{ j.when }}{% endif %}
+      </div>
+      <div>
+        <h3 class="font-disp font-semibold text-[18px]">{{ j.role }}</h3>
+        <div class="text-link text-sm my-[2px] mb-3 font-mono">{{ j.org }}</div>
+        <ul class="flex flex-col gap-[7px]">
+          {% for pt in j.points %}<li class="text-dim text-[14.5px] pl-[18px] relative before:content-['›'] before:absolute before:left-0 before:text-term">{{ pt }}</li>{% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ cat skills.json</span></div>
+  <div class="grid [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))] gap-4">
+    {% for s in site.data.skills %}
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-xs text-term tracking-[0.1em] uppercase mb-3">{{ s.group }}</div>
+      <div class="flex gap-2 flex-wrap">
+        {% for it in s.items %}<span class="font-mono text-[12.5px] text-dim border border-line rounded-md px-[9px] py-1 transition hover:text-fg hover:border-dim hover:-translate-y-[2px]">{{ it }}</span>{% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ cat education.md</span></div>
+  <div class="grid md:grid-cols-2 gap-[18px]">
+    {% for e in p.education %}
+    <div class="reveal bg-panel border border-line rounded-xl p-[22px]">
+      <h3 class="font-disp font-semibold text-[18px]">{{ e.degree }}</h3>
+      <div class="text-link font-mono text-[13px] my-1 mb-[10px]">{{ e.school }}</div>
+      <div class="text-dim text-sm">{{ e.meta }}</div>
+      <div class="mt-[10px]"><span class="inline-block font-mono text-xs text-term border border-term/30 rounded-md px-[9px] py-[3px]">{{ e.gpa }}</span></div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CERTS -->
+<section class="py-[9vh] border-t border-line">
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ ls certs/</span></div>
+  <div class="reveal flex gap-2 flex-wrap">
+    {% for c in site.data.certs %}<span class="font-mono text-[13px] text-dim border border-line rounded-md px-[13px] py-2 transition hover:text-fg hover:border-dim">✓ {{ c }}</span>{% endfor %}
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-[14vh] border-t border-line text-center">
+  <div class="reveal font-mono text-sm text-dim mb-[30px] flex justify-center gap-2"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ ./connect.sh</span></div>
+  <h2 class="reveal font-disp font-semibold text-[clamp(30px,6vw,56px)] tracking-[-0.02em] mb-[10px]">Let's build something.</h2>
+  <p class="reveal text-dim text-[16.5px] max-w-[640px] mx-auto mb-7">Open to software engineering roles and collaborations in AI agents and security. The fastest way to reach me is email.</p>
+  <div class="reveal flex gap-4 justify-center flex-wrap font-mono text-sm">
+    <a href="mailto:{{ p.email }}" class="border border-line px-5 py-[11px] rounded-[9px] transition hover:border-term hover:-translate-y-[3px] no-underline">→ email</a>
+    <a href="{{ p.github }}" target="_blank" rel="noopener" class="border border-line px-5 py-[11px] rounded-[9px] transition hover:border-term hover:-translate-y-[3px] no-underline">→ github</a>
+    <a href="{{ p.linkedin }}" target="_blank" rel="noopener" class="border border-line px-5 py-[11px] rounded-[9px] transition hover:border-term hover:-translate-y-[3px] no-underline">→ linkedin</a>
+  </div>
+</section>
+
+<footer class="py-[30px] border-t border-line font-mono text-xs text-dimmer flex justify-between flex-wrap gap-[10px]">
+  <span>© 2026 {{ p.name }} · {{ p.location }} — built as a terminal session</span>
+  <span>last login: today · <span class="text-term">● online</span></span>
+</footer>
+
+</main>

@@ -1,0 +1,33 @@
+{% assign p = site.data.profile %}
+
+<!-- status bar -->
+<div class="fixed top-0 inset-x-0 z-40 h-[42px] bg-[rgba(8,11,18,0.82)] backdrop-blur border-b border-line flex items-center gap-[18px] px-[22px] font-mono text-xs">
+  <span class="flex items-center gap-2 text-term"><i class="w-2 h-2 rounded-full bg-term shadow-[0_0_10px_#3ddc97] animate-pulse"></i> online</span>
+  <span class="text-dim hidden sm:inline">~ {{ p.location }}</span>
+  <span class="text-dim">{{ p.status }}</span>
+  <nav class="ml-auto flex gap-[18px]">
+    <a href="#about" class="text-dim hover:text-fg">about</a>
+    <a href="#projects" class="text-dim hover:text-fg">projects</a>
+    <a href="#work" class="text-dim hover:text-fg">work</a>
+    <a href="#contact" class="text-dim hover:text-fg">contact</a>
+  </nav>
+</div>
+
+<!-- hero -->
+<header class="min-h-screen flex flex-col justify-center relative pt-[42px]">
+  <canvas id="rain" class="absolute inset-0 z-0 opacity-[0.10]"></canvas>
+  <div class="relative z-[2] max-w-[1040px] mx-auto px-[26px] w-full">
+    <div class="font-mono text-[13px] tracking-[0.05em] text-term mb-5">
+      <span class="text-dim">$</span> whoami <span class="text-dim">&nbsp;# fullstack software engineer · ai + security</span>
+    </div>
+    <h1 class="glitch font-disp font-bold text-[clamp(46px,11vw,118px)] leading-[0.92] tracking-[-0.04em] text-fg" data-t="{{ p.name }}">{{ p.name }}</h1>
+    <div class="font-disp font-medium text-[clamp(20px,3.4vw,34px)] text-fg mt-[18px] tracking-[-0.01em]">{{ p.tagline }}</div>
+    <div id="tline" class="font-mono text-[clamp(14px,2vw,17px)] text-dim mt-[14px] min-h-[1.6em]"></div>
+    <div class="flex gap-[14px] mt-[34px] flex-wrap">
+      <button data-scroll="#projects" class="font-mono text-sm bg-term text-[#04140c] border border-term font-bold px-[22px] py-[13px] rounded-[9px] cursor-pointer transition hover:shadow-[0_0_30px_rgba(61,220,151,0.45)] btn-magnetic">view projects</button>
+      <button data-scroll="#contact" class="font-mono text-sm bg-panel text-fg border border-line px-[22px] py-[13px] rounded-[9px] cursor-pointer transition hover:border-term hover:bg-panel2 btn-magnetic">get in touch</button>
+      <button id="open-terminal" class="font-mono text-sm bg-panel text-fg border border-line px-[22px] py-[13px] rounded-[9px] cursor-pointer transition hover:border-term hover:bg-panel2 btn-magnetic">open terminal ⌘K</button>
+    </div>
+  </div>
+  <div class="absolute bottom-[26px] left-1/2 -translate-x-1/2 z-[2] text-dimmer font-mono text-[11px] tracking-[0.2em]">scroll ↓</div>
+</header>
