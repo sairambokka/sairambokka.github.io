@@ -37,6 +37,12 @@ jobs:
       - name: Install Node dependencies
         run: npm ci
 
+      - name: Fetch GitHub contributions
+        env:
+          # PAT (read:user) for private contributions; falls back to auto token.
+          GITHUB_TOKEN: ${{ secrets.CONTRIB_TOKEN || secrets.GITHUB_TOKEN }}
+        run: node scripts/fetch-contributions.js || echo "contribution fetch failed; using committed data"
+
       - name: Build JavaScript assets
         run: npm run build:js
 

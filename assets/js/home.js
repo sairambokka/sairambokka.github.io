@@ -33,6 +33,7 @@
   var SKILLS     = DATA.skills     || [];
   var CERTS      = DATA.certs      || [];
   var PROJECTS   = DATA.projects   || [];
+  var CONTRIB    = DATA.contributions || null;
 
   /* =========================================================
    * 0b. THEME TOGGLE (light/dark, persisted; terminal stays dark)
@@ -850,12 +851,207 @@
   }
 
   /* =========================================================
+   * 7b. CONTRIBUTIONS HEATMAP (stats page)
+   * ======================================================= */
+  function initContributions() {
+    var grid = document.getElementById('contrib-grid');
+    if (!grid) return; // not on the stats page
+
+    var weeks = (CONTRIB && CONTRIB.weeks) || [];
+    var flat = [];
+    weeks.forEach(function (w) { w.forEach(function (d) { flat.push(d); }); });
+
+    if (!flat.length) {
+      grid.innerHTML = '<div class="font-mono text-sm text-dim">no contribution data yet — syncing.</div>';
+      return;
+    }
+
+    // --- summary stats -------------------------------------------------
+    var total = (CONTRIB && typeof CONTRIB.total === 'number')
+      ? CONTRIB.total
+      : flat.reduce(function (a, d) { return a + d.count; }, 0);
+    var maxDay = flat.reduce(function (m, d) { return d.count > m ? d.count : m; }, 0);
+    var active = flat.filter(function (d) { return d.count > 0; }).length;
+
+    // current streak: walk backwards from the last day with a real date <= today
+    var streak = 0;
+    for (var i = flat.length - 1; i >= 0; i--) {
+      if (flat[i].count > 0) { streak++; }
+      else { break; }
+    }
+
+    // --- weekday labels + month labels + cells -------------------------
+    var DOW = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
+    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+    var monthRow = document.createElement('div');
+    monthRow.className = 'contrib-months';
+    var dowCol = document.createElement('div');
+    dowCol.className = 'contrib-dow';
+    DOW.forEach(function (lbl) {
+      var el = document.createElement('span');
+      el.textContent = lbl;
+      dowCol.appendChild(el);
+    });
+
+    var cols = document.createElement('div');
+    cols.className = 'contrib-cols';
+
+    var lastMonth = -1;
+    weeks.forEach(function (week, wi) {
+      // month label: when the first day of this column starts a new month
+      var first = week[0];
+      if (first) {
+        var m = parseInt(first.date.slice(5, 7), 10) - 1;
+        if (m !== lastMonth) {
+          var ml = document.createElement('span');
+          ml.className = 'contrib-month';
+          ml.textContent = MON[m];
+          ml.style.gridColumnStart = String(wi + 1);
+          monthRow.appendChild(ml);
+          lastMonth = m;
+        }
+      }
+
+      var col = document.createElement('div');
+      col.className = 'contrib-col';
+      col.style.setProperty('--col', String(wi));
+      week.forEach(function (d) {
+        var cell = document.createElement('span');
+        cell.className = 'contrib-cell';
+        cell.setAttribute('data-level', String(d.level));
+        cell.setAttribute('data-count', String(d.count));
+        cell.setAttribute('data-date', d.date);
+        cell.setAttribute('tabindex', '0');
+        cell.setAttribute('role', 'img');
+        var label = (d.count === 0 ? 'No' : d.count) + ' contribution' +
+          (d.count === 1 ? '' : 's') + ' on ' + fmtDate(d.date);
+        cell.setAttribute('aria-label', label);
+        col.appendChild(cell);
+      });
+      cols.appendChild(col);
+    });
+
+    grid.appendChild(monthRow);
+    var body = document.createElement('div');
+    body.className = 'contrib-body';
+    body.appendChild(dowCol);
+    body.appendChild(cols);
+    grid.appendChild(body);
+
+    // --- tooltip -------------------------------------------------------
+    var tip = document.getElementById('contrib-tip');
+    function showTip(cell) {
+      if (!tip) return;
+      var count = cell.getAttribute('data-count');
+      var date = cell.getAttribute('data-date');
+      tip.innerHTML = '<b>' + count + '</b> contribution' + (count === '1' ? '' : 's') +
+        '<br><span class="contrib-tip-date">' + fmtDate(date) + '</span>';
+      var r = cell.getBoundingClientRect();
+      tip.style.left = (window.scrollX + r.left + r.width / 2) + 'px';
+      tip.style.top = (window.scrollY + r.top) + 'px';
+      tip.classList.add('on');
+    }
+    function hideTip() { if (tip) tip.classList.remove('on'); }
+    grid.addEventListener('mouseover', function (e) {
+      var c = e.target.closest && e.target.closest('.contrib-cell');
+      if (c) showTip(c);
+    });
+    grid.addEventListener('mouseout', hideTip);
+    grid.addEventListener('focusin', function (e) {
+      var c = e.target.closest && e.target.closest('.contrib-cell');
+      if (c) showTip(c);
+    });
+    grid.addEventListener('focusout', hideTip);
+
+    // --- count-up + wave reveal ---------------------------------------
+    var headEl = document.getElementById('contrib-count');
+    var statEls = {
+      total: document.querySelector('[data-stat="total"]'),
+      max: document.querySelector('[data-stat="max"]'),
+      streak: document.querySelector('[data-stat="streak"]'),
+      active: document.querySelector('[data-stat="active"]'),
+    };
+
+    function setStats(instant) {
+      if (instant) {
+        if (headEl) headEl.textContent = String(total);
+        if (statEls.total) statEls.total.textContent = String(total);
+        if (statEls.max) statEls.max.textContent = String(maxDay);
+        if (statEls.streak) statEls.streak.textContent = String(streak);
+        if (statEls.active) statEls.active.textContent = String(active);
+      } else {
+        countUp(headEl, total);
+        countUp(statEls.total, total);
+        countUp(statEls.max, maxDay);
+        countUp(statEls.streak, streak);
+        countUp(statEls.active, active);
+      }
+    }
+
+    if (rm) {
+      // reduced motion: show everything immediately, no wave, no count-up
+      grid.classList.add('ready');
+      setStats(true);
+      return;
+    }
+
+    var done = false;
+    function play() {
+      if (done) return;
+      done = true;
+      grid.classList.add('ready'); // triggers the CSS wave via per-column delay
+      setStats(false);
+    }
+
+    if (!window.IntersectionObserver) {
+      play();
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { play(); io.disconnect(); }
+      });
+    }, { threshold: 0.15 });
+    io.observe(grid);
+  }
+
+  function countUp(el, target) {
+    if (!el) return;
+    if (target <= 0) { el.textContent = '0'; return; }
+    var dur = 900;
+    var start = null;
+    function step(ts) {
+      if (start === null) start = ts;
+      var t = Math.min(1, (ts - start) / dur);
+      // easeOutCubic
+      var eased = 1 - Math.pow(1 - t, 3);
+      el.textContent = String(Math.round(eased * target));
+      if (t < 1) requestAnimationFrame(step);
+      else el.textContent = String(target);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function fmtDate(iso) {
+    // iso = YYYY-MM-DD -> "Mon, Jun 16 2026"
+    var parts = String(iso).split('-');
+    if (parts.length !== 3) return iso;
+    var y = +parts[0], mo = +parts[1] - 1, da = +parts[2];
+    var d = new Date(Date.UTC(y, mo, da));
+    var DOW = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return DOW[d.getUTCDay()] + ', ' + MON[mo] + ' ' + da + ' ' + y;
+  }
+
+  /* =========================================================
    * 8. INIT (DOMContentLoaded)
    * ======================================================= */
   function init() {
     initScrollButtons();
     initRain();
     initTypewriter();
+    initContributions();
     initReveal();
     initMagnetic();
     initTerminalControls();

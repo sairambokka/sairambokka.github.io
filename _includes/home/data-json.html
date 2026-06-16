@@ -4,6 +4,7 @@
   "experience": {{ site.data.experience | jsonify }},
   "skills": {{ site.data.skills | jsonify }},
   "certs": {{ site.data.certs | jsonify }},
+  "contributions": {{ site.data.contributions | jsonify }},
   "projects": [
     {% assign sorted = site.portfolio | sort: "order" %}
     {% for p in sorted %}

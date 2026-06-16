@@ -1,0 +1,67 @@
+{% assign p = site.data.profile %}
+
+<main class="max-w-[1040px] mx-auto px-[26px] pt-[52px]">
+
+<!-- back / nav -->
+<section class="py-[7vh]">
+  <a href="{{ '/' | relative_url }}" class="reveal inline-block font-mono text-sm text-dim hover:text-term transition mb-[30px] no-underline">← cd ~</a>
+  <div class="reveal font-mono text-sm text-dim mb-3"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ git activity --graph</span></div>
+  <h1 class="reveal font-disp font-semibold text-[clamp(30px,6vw,52px)] tracking-[-0.02em] leading-none mb-[10px]">
+    <span id="contrib-count" data-total="{{ site.data.contributions.total | default: 0 }}">0</span>
+    <span class="text-term">contributions</span>
+  </h1>
+  <div class="reveal text-dim font-mono text-[14.5px]">in the last year · synced
+    <span class="text-term">{{ site.data.contributions.updated | default: "—" }}</span>
+  </div>
+</section>
+
+<!-- HEATMAP -->
+<section class="pb-[6vh]">
+  <div class="reveal bg-panel border border-line rounded-xl p-5 overflow-x-auto">
+    <div id="contrib-grid" class="contrib" aria-label="GitHub contribution graph for the last year"></div>
+    <div class="flex justify-between items-center mt-4 font-mono text-[12.5px] text-dimmer">
+      <a href="{{ p.github }}" target="_blank" rel="noopener" class="hover:text-term transition no-underline">@{{ site.author.github | default: "sairambokka" }} on github →</a>
+      <div class="flex items-center gap-2">
+        <span>less</span>
+        <span class="contrib-legend" data-level="0"></span>
+        <span class="contrib-legend" data-level="1"></span>
+        <span class="contrib-legend" data-level="2"></span>
+        <span class="contrib-legend" data-level="3"></span>
+        <span class="contrib-legend" data-level="4"></span>
+        <span>more</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY STATS -->
+<section class="pb-[12vh]">
+  <div class="grid [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] gap-4">
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">total</div>
+      <div class="font-disp font-semibold text-[28px]" data-stat="total">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">best day</div>
+      <div class="font-disp font-semibold text-[28px]" data-stat="max">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">current streak</div>
+      <div class="font-disp font-semibold text-[28px]" data-stat="streak">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">active days</div>
+      <div class="font-disp font-semibold text-[28px]" data-stat="active">0</div>
+    </div>
+  </div>
+</section>
+
+<footer class="py-[30px] border-t border-line font-mono text-[13px] text-dimmer flex justify-between flex-wrap gap-[10px]">
+  <span>© 2026 {{ p.name }} · contribution data via github graphql</span>
+  <a href="{{ '/' | relative_url }}" class="text-term hover:text-fg transition no-underline">← back home</a>
+</footer>
+
+<!-- tooltip (single, repositioned on hover) -->
+<div id="contrib-tip" class="contrib-tip" role="status" aria-live="polite"></div>
+
+</main>
