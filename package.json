@@ -29,12 +29,18 @@
     "jquery-smooth-scroll": "^2.2.0"
   },
   "devDependencies": {
+    "autoprefixer": "^10.4.20",
     "onchange": "^7.1.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
     "uglify-js": "^3.17.4"
   },
   "scripts": {
     "uglify": "uglifyjs node_modules/jquery/dist/jquery.min.js node_modules/fitvids/dist/fitvids.min.js node_modules/jquery-smooth-scroll/jquery.smooth-scroll.min.js assets/js/plugins/jquery.greedy-navigation.js assets/js/_main.js -c -m -o assets/js/main.min.js",
     "watch:js": "onchange \"assets/js/**/*.js\" -e \"assets/js/main.min.js\" -- npm run build:js",
-    "build:js": "npm run uglify"
+    "build:js": "npm run uglify",
+    "build:css": "tailwindcss -i src/tailwind.css -o assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i src/tailwind.css -o assets/css/tailwind.css --watch",
+    "build": "npm run build:js && npm run build:css"
   }
 }

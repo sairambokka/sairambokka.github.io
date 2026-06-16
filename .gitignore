@@ -11,6 +11,9 @@ Gemfile.lock
 # Ignore files created by npm
 node_modules
 
+# Ignore Tailwind-generated CSS (built in CI)
+assets/css/tailwind.css
+
 # Ignore the vendor file at root level and bundle for alternative installation
 /vendor/
 .bundle/
