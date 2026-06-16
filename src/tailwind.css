@@ -5,15 +5,18 @@
 /* ---- theme tokens (dark default; .light overrides) ---- */
 :root {
   --c-bg: #06080d; --c-panel: #0c1119; --c-panel2: #0f1622; --c-line: #172231;
-  --c-fg: #d7e2ee; --c-dim: #5d6b7d; --c-dimmer: #3a4656;
+  --c-fg: #d7e2ee; --c-dim: #5d6b7d; --c-dimmer: #566476;
   --c-term: #3ddc97; --c-link: #4d9fff; --c-pink: #ff5d73; --c-amber: #ffcf5c;
 }
 html.light {
   --c-bg: #f7f8fa; --c-panel: #ffffff; --c-panel2: #f0f2f6; --c-line: #e2e6ed;
-  --c-fg: #1a2230; --c-dim: #5a6675; --c-dimmer: #97a1b0;
+  --c-fg: #1a2230; --c-dim: #5a6675; --c-dimmer: #6b7686;
   --c-term: #0f9d6b; --c-link: #1f6feb; --c-pink: #d6336c; --c-amber: #b7791f;
 }
 html { background: var(--c-bg); }
+
+/* visible keyboard focus everywhere (skip terminal dots — own rule) */
+:focus-visible { outline: 2px solid var(--c-term); outline-offset: 2px; border-radius: 3px; }
 /* beat academicpages main.css body{background:#fff} so theme follows our vars + canvas shows */
 body { background: transparent !important; color: var(--c-fg); }
 
@@ -62,8 +65,9 @@ body { background: transparent !important; color: var(--c-fg); }
 @layer utilities {
   .blink { animation: blink 1s steps(1) infinite; }
   @keyframes blink {50%{opacity:0}}
-  .reveal { opacity:0; transform:translateY(22px); }
-  .reveal.in { opacity:1; transform:none; transition: opacity .6s, transform .6s cubic-bezier(.2,.7,.2,1); }
+  /* only hide reveal when JS is active (html.js); no-JS shows everything */
+  html.js .reveal { opacity:0; transform:translateY(22px); }
+  html.js .reveal.in { opacity:1; transform:none; transition: opacity .6s, transform .6s cubic-bezier(.2,.7,.2,1); }
 }
 
 /* ---- glitch — proven effect, made always-on (hover gate removed) ---- */
@@ -129,4 +133,12 @@ body { background: transparent !important; color: var(--c-fg); }
   .glitch::before, .glitch::after { animation: none; opacity: 0; }
   .blink, .reveal { animation: none !important; opacity: 1; transform: none; }
   .reveal { opacity: 1; transform: none; }
+}
+
+/* terminal fits small screens */
+@media (max-width: 640px) {
+  .term-win { inset: 8px; font-size: 13px; }
+  .term-hint { font-size: 11px; gap: 10px; padding: 7px 12px; }
+  .term-body { padding: 14px 14px; }
+  .ascii { font-size: 9px; }
 }

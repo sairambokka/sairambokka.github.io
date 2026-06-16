@@ -37,7 +37,7 @@
       <h3 class="font-disp font-semibold text-[19px] mb-2 tracking-[-0.01em] text-fg">{{ proj.title }}</h3>
       <p class="text-dim text-sm mb-4">{{ proj.excerpt | strip_html }}</p>
       <div class="flex gap-[7px] flex-wrap">
-        {% for t in proj.tech %}<span class="font-mono text-[13px] text-link bg-link/10 border border-link/20 rounded-[5px] px-2 py-[3px]">{{ t }}</span>{% endfor %}
+        {% for t in proj.tech %}<span class="font-mono text-[12.5px] text-dim bg-panel2 rounded-[5px] px-[9px] py-[3px]">{{ t }}</span>{% endfor %}
       </div>
       <span class="absolute right-5 bottom-[18px] text-term opacity-0 -translate-x-1 transition group-hover:opacity-100 group-hover:translate-x-0">→</span>
     </a>
