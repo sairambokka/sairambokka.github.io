@@ -40,6 +40,9 @@ jobs:
       - name: Build JavaScript assets
         run: npm run build:js
 
+      - name: Build CSS assets (Tailwind)
+        run: npm run build:css
+
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v4

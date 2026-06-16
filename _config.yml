@@ -188,6 +188,10 @@ exclude:
   - README
   - tmp
   - vendor
+  - src
+  - mockups
+  - tailwind.config.js
+  - postcss.config.js
 keep_files:
   - .git
   - .svn
