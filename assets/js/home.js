@@ -880,6 +880,31 @@
       else { break; }
     }
 
+    // longest streak across the whole window
+    var longest = 0, run = 0;
+    flat.forEach(function (d) {
+      if (d.count > 0) { run++; if (run > longest) longest = run; }
+      else { run = 0; }
+    });
+
+    // busiest weekday + top month (by total contributions)
+    var dowTotals = [0, 0, 0, 0, 0, 0, 0];
+    var monTotals = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    flat.forEach(function (d) {
+      var parts = d.date.split('-');
+      var dt = new Date(Date.UTC(+parts[0], +parts[1] - 1, +parts[2]));
+      dowTotals[dt.getUTCDay()] += d.count;
+      monTotals[+parts[1] - 1] += d.count;
+    });
+    var DOW_FULL = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    var MON_FULL = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    var busiestDay = DOW_FULL[dowTotals.indexOf(Math.max.apply(null, dowTotals))];
+    var topMonth = MON_FULL[monTotals.indexOf(Math.max.apply(null, monTotals))];
+    var avg = active ? Math.round((total / active) * 10) / 10 : 0;
+
+    var breakdown = (CONTRIB && CONTRIB.breakdown) || {};
+    var languages = (CONTRIB && CONTRIB.languages) || [];
+
     // --- weekday labels + month labels + cells -------------------------
     var DOW = ['', 'Mon', '', 'Wed', '', 'Fri', ''];
     var MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -964,6 +989,9 @@
     });
     grid.addEventListener('focusout', hideTip);
 
+    // --- language bar (rendered up front; width animates via .ready) ---
+    renderLanguages(languages);
+
     // --- count-up + wave reveal ---------------------------------------
     var headEl = document.getElementById('contrib-count');
     var statEls = {
@@ -971,22 +999,36 @@
       max: document.querySelector('[data-stat="max"]'),
       streak: document.querySelector('[data-stat="streak"]'),
       active: document.querySelector('[data-stat="active"]'),
+      longest: document.querySelector('[data-stat="longest"]'),
+      avg: document.querySelector('[data-stat="avg"]'),
     };
+    var textEls = {
+      busiestDay: document.querySelector('[data-stat="busiestDay"]'),
+      topMonth: document.querySelector('[data-stat="topMonth"]'),
+    };
+    function breakEl(k) { return document.querySelector('[data-break="' + k + '"]'); }
 
     function setStats(instant) {
-      if (instant) {
-        if (headEl) headEl.textContent = String(total);
-        if (statEls.total) statEls.total.textContent = String(total);
-        if (statEls.max) statEls.max.textContent = String(maxDay);
-        if (statEls.streak) statEls.streak.textContent = String(streak);
-        if (statEls.active) statEls.active.textContent = String(active);
-      } else {
-        countUp(headEl, total);
-        countUp(statEls.total, total);
-        countUp(statEls.max, maxDay);
-        countUp(statEls.streak, streak);
-        countUp(statEls.active, active);
-      }
+      // non-numeric labels render immediately either way
+      if (textEls.busiestDay) textEls.busiestDay.textContent = busiestDay || '—';
+      if (textEls.topMonth) textEls.topMonth.textContent = topMonth || '—';
+      if (statEls.avg) statEls.avg.textContent = String(avg);
+
+      var nums = [
+        [headEl, total], [statEls.total, total], [statEls.max, maxDay],
+        [statEls.streak, streak], [statEls.active, active],
+        [statEls.longest, longest],
+        [breakEl('commits'), breakdown.commits || 0],
+        [breakEl('pullRequests'), breakdown.pullRequests || 0],
+        [breakEl('reviews'), breakdown.reviews || 0],
+        [breakEl('issues'), breakdown.issues || 0],
+        [breakEl('private'), breakdown.private || 0],
+      ];
+      nums.forEach(function (pair) {
+        if (!pair[0]) return;
+        if (instant) pair[0].textContent = String(pair[1]);
+        else countUp(pair[0], pair[1]);
+      });
     }
 
     if (rm) {
@@ -1014,6 +1056,45 @@
       });
     }, { threshold: 0.15 });
     io.observe(grid);
+  }
+
+  function renderLanguages(languages) {
+    var bar = document.getElementById('lang-bar');
+    var legend = document.getElementById('lang-legend');
+    if (!bar) return;
+    if (!languages || !languages.length) {
+      bar.style.display = 'none';
+      if (legend) legend.innerHTML = '<span class="font-mono text-sm text-dim">no language data</span>';
+      return;
+    }
+    bar.innerHTML = '';
+    legend.innerHTML = '';
+    languages.forEach(function (l) {
+      var seg = document.createElement('span');
+      seg.className = 'lang-seg';
+      seg.style.background = l.color;
+      seg.setAttribute('data-pct', String(l.pct));
+      seg.title = l.name + ' ' + l.pct + '%';
+      bar.appendChild(seg);
+
+      var item = document.createElement('span');
+      item.className = 'lang-item';
+      item.innerHTML = '<i style="background:' + l.color + '"></i>' +
+        '<b>' + l.name + '</b> ' + l.pct + '%';
+      legend.appendChild(item);
+    });
+
+    function fill() {
+      [].forEach.call(bar.querySelectorAll('.lang-seg'), function (s) {
+        s.style.width = s.getAttribute('data-pct') + '%';
+      });
+      bar.classList.add('on');
+    }
+    if (rm || !window.IntersectionObserver) { fill(); return; }
+    var lio = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { fill(); lio.disconnect(); } });
+    }, { threshold: 0.3 });
+    lio.observe(bar);
   }
 
   function countUp(el, target) {

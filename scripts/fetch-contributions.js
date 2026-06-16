@@ -40,10 +40,33 @@ const LEVEL = {
   FOURTH_QUARTILE: 4,
 };
 
+// Shared selection — calendar, contribution-type breakdown, and the
+// repositories needed to aggregate top languages by bytes.
+const SELECTION = `
+  contributionsCollection {
+    contributionCalendar {
+      totalContributions
+      weeks { contributionDays { date contributionCount contributionLevel } }
+    }
+    totalCommitContributions
+    totalPullRequestContributions
+    totalIssueContributions
+    totalPullRequestReviewContributions
+    restrictedContributionsCount
+  }
+  repositories(first: 100, ownerAffiliations: OWNER, isFork: false, orderBy: {field: PUSHED_AT, direction: DESC}) {
+    nodes {
+      languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+        edges { size node { name color } }
+      }
+    }
+  }
+`;
+
 // If a login is given, query that user; otherwise query the token's viewer.
 const query = LOGIN
-  ? `query($login:String!){ user(login:$login){ contributionsCollection{ contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount contributionLevel } } } } } }`
-  : `query{ viewer{ contributionsCollection{ contributionCalendar{ totalContributions weeks{ contributionDays{ date contributionCount contributionLevel } } } } } }`;
+  ? `query($login:String!){ user(login:$login){ ${SELECTION} } }`
+  : `query{ viewer{ ${SELECTION} } }`;
 
 async function main() {
   const res = await fetch('https://api.github.com/graphql', {
@@ -66,7 +89,8 @@ async function main() {
   }
 
   const root = LOGIN ? json.data.user : json.data.viewer;
-  const cal = root.contributionsCollection.contributionCalendar;
+  const cc = root.contributionsCollection;
+  const cal = cc.contributionCalendar;
 
   const weeks = cal.weeks.map((w) =>
     w.contributionDays.map((d) => ({
@@ -76,10 +100,40 @@ async function main() {
     }))
   );
 
+  // contribution breakdown by type
+  const breakdown = {
+    commits: cc.totalCommitContributions || 0,
+    pullRequests: cc.totalPullRequestContributions || 0,
+    issues: cc.totalIssueContributions || 0,
+    reviews: cc.totalPullRequestReviewContributions || 0,
+    private: cc.restrictedContributionsCount || 0,
+  };
+
+  // aggregate languages by total bytes across owned, non-fork repos
+  const byLang = {};
+  (root.repositories.nodes || []).forEach((repo) => {
+    (repo.languages?.edges || []).forEach((e) => {
+      const key = e.node.name;
+      if (!byLang[key]) byLang[key] = { name: key, color: e.node.color, size: 0 };
+      byLang[key].size += e.size;
+    });
+  });
+  const totalBytes = Object.values(byLang).reduce((a, l) => a + l.size, 0) || 1;
+  const languages = Object.values(byLang)
+    .sort((a, b) => b.size - a.size)
+    .slice(0, 8)
+    .map((l) => ({
+      name: l.name,
+      color: l.color || '#6e7681',
+      pct: Math.round((l.size / totalBytes) * 1000) / 10, // one decimal
+    }));
+
   const out = {
     total: cal.totalContributions,
     updated: new Date().toISOString().slice(0, 10),
     weeks,
+    breakdown,
+    languages,
   };
 
   fs.writeFileSync(OUT, JSON.stringify(out, null, 2) + '\n');

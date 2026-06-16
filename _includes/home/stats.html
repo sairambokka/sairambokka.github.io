@@ -1,9 +1,9 @@
 {% assign p = site.data.profile %}
 
-<main class="max-w-[1040px] mx-auto px-[26px] pt-[52px]">
+<main class="max-w-[1040px] mx-auto px-[26px]">
 
 <!-- back / nav -->
-<section class="py-[7vh]">
+<section class="pt-[6vh] pb-[5vh]">
   <a href="{{ '/' | relative_url }}" class="reveal inline-block font-mono text-sm text-dim hover:text-term transition mb-[30px] no-underline">← cd ~</a>
   <div class="reveal font-mono text-sm text-dim mb-3"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ git activity --graph</span></div>
   <h1 class="reveal font-disp font-semibold text-[clamp(30px,6vw,52px)] tracking-[-0.02em] leading-none mb-[10px]">
@@ -35,7 +35,7 @@
 </section>
 
 <!-- SUMMARY STATS -->
-<section class="pb-[12vh]">
+<section class="pb-[5vh]">
   <div class="grid [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] gap-4">
     <div class="reveal bg-panel border border-line rounded-xl p-5">
       <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">total</div>
@@ -52,6 +52,65 @@
     <div class="reveal bg-panel border border-line rounded-xl p-5">
       <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">active days</div>
       <div class="font-disp font-semibold text-[28px]" data-stat="active">0</div>
+    </div>
+  </div>
+</section>
+
+<!-- BREAKDOWN BY TYPE -->
+<section class="pb-[5vh]">
+  <div class="reveal font-mono text-sm text-dim mb-[18px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ git shortlog -sn --by-type</span></div>
+  <div class="grid [grid-template-columns:repeat(auto-fit,minmax(150px,1fr))] gap-4">
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">commits</div>
+      <div class="font-disp font-semibold text-[26px]" data-break="commits">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">pull requests</div>
+      <div class="font-disp font-semibold text-[26px]" data-break="pullRequests">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">reviews</div>
+      <div class="font-disp font-semibold text-[26px]" data-break="reviews">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">issues</div>
+      <div class="font-disp font-semibold text-[26px]" data-break="issues">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">private</div>
+      <div class="font-disp font-semibold text-[26px]" data-break="private">0</div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section class="pb-[5vh]">
+  <div class="reveal font-mono text-sm text-dim mb-[18px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ cat ~/.languages</span></div>
+  <div class="reveal bg-panel border border-line rounded-xl p-5">
+    <div id="lang-bar" class="lang-bar" aria-label="Language usage across repositories"></div>
+    <div id="lang-legend" class="lang-legend"></div>
+  </div>
+</section>
+
+<!-- PATTERNS -->
+<section class="pb-[12vh]">
+  <div class="reveal font-mono text-sm text-dim mb-[18px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ git log --stat --analyze</span></div>
+  <div class="grid [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))] gap-4">
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">longest streak</div>
+      <div class="font-disp font-semibold text-[26px]" data-stat="longest">0</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">busiest day</div>
+      <div class="font-disp font-semibold text-[26px]" data-stat="busiestDay">—</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">top month</div>
+      <div class="font-disp font-semibold text-[26px]" data-stat="topMonth">—</div>
+    </div>
+    <div class="reveal bg-panel border border-line rounded-xl p-5">
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-2">avg / active day</div>
+      <div class="font-disp font-semibold text-[26px]" data-stat="avg">0</div>
     </div>
   </div>
 </section>
