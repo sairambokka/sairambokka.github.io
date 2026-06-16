@@ -1,0 +1,12 @@
+- group: "languages"
+  items: ["TypeScript", "JavaScript", "Python", "Java", "Bash", "HTML5", "CSS"]
+- group: "frontend"
+  items: ["React", "Next.js", "Tailwind", "WebAssembly", "React Hooks"]
+- group: "backend"
+  items: ["Node.js", "Express", "Spring Boot", "FastAPI", "REST", "WebSocket"]
+- group: "infra & tools"
+  items: ["Docker", "Compose", "Jenkins", "Git", "CI/CD", "Linux", "Playwright"]
+- group: "ai & agents"
+  items: ["LangChain", "CrewAI", "PyTorch", "MCP", "Multi-Agent"]
+- group: "security"
+  items: ["OSINT", "Pentesting", "SIEM / SOAR", "Vuln Assessment", "Splunk", "Nmap"]
