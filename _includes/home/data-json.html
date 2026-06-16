@@ -1,0 +1,22 @@
+<script id="site-data" type="application/json">
+{
+  "profile": {{ site.data.profile | jsonify }},
+  "experience": {{ site.data.experience | jsonify }},
+  "skills": {{ site.data.skills | jsonify }},
+  "certs": {{ site.data.certs | jsonify }},
+  "projects": [
+    {% assign sorted = site.portfolio | sort: "order" %}
+    {% for p in sorted %}
+    {
+      "slug": {{ p.slug | jsonify }},
+      "name": {{ p.title | jsonify }},
+      "excerpt": {{ p.excerpt | strip_html | strip | jsonify }},
+      "stat": {{ p.stat | jsonify }},
+      "tech": {{ p.tech | jsonify }},
+      "github": {{ p.github | jsonify }},
+      "url": {{ p.url | prepend: site.baseurl | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+}
+</script>
