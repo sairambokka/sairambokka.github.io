@@ -2,6 +2,11 @@
 title: "LiveTerm"
 excerpt: "Highly customizable terminal-styled website template powered by Next.js<br/>"
 collection: portfolio
+slug: "liveterm"
+stat: "template"
+tech: ["next.js", "tailwind"]
+github: "https://github.com/sairambokka"
+order: 10
 ---
 
 ## Overview

@@ -2,6 +2,11 @@
 title: "CTF Solver Agent"
 excerpt: "AI-powered agent for solving Capture The Flag challenges using LangChain and security tools<br/>"
 collection: portfolio
+slug: "ctf"
+stat: "agentic"
+tech: ["langchain", "nmap"]
+github: "https://github.com/sairambokka"
+order: 5
 ---
 
 ## Overview

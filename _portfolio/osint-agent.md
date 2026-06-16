@@ -2,6 +2,11 @@
 title: "OSINT Agent Orchestration"
 excerpt: "Multi-agent system for comprehensive open-source intelligence gathering and analysis<br/>"
 collection: portfolio
+slug: "osint"
+stat: "multi-agent"
+tech: ["langchain", "crewai"]
+github: "https://github.com/sairambokka"
+order: 3
 ---
 
 ## Overview

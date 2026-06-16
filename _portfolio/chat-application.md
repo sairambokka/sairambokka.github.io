@@ -2,6 +2,11 @@
 title: "Real-Time Scalable Chat Application"
 excerpt: "High-concurrency messaging platform with WebSocket communication and <100ms latency<br/>"
 collection: portfolio
+slug: "chat"
+stat: "<100ms"
+tech: ["node", "socket.io", "react"]
+github: "https://github.com/sairambokka"
+order: 8
 ---
 
 ## Overview

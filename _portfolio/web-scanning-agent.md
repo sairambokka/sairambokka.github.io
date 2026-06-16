@@ -2,6 +2,11 @@
 title: "Web Scanning AI Agent"
 excerpt: "Multi-agent security system for comprehensive web application vulnerability assessment<br/>"
 collection: portfolio
+slug: "webscan"
+stat: "security"
+tech: ["playwright", "claude"]
+github: "https://github.com/sairambokka"
+order: 4
 ---
 
 ## Overview

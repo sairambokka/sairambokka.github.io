@@ -2,6 +2,11 @@
 title: "AI Web Agent"
 excerpt: "Intelligent web automation system combining fixed-task automation with AI-powered dynamic agents<br/>"
 collection: portfolio
+slug: "webagent"
+stat: "automation"
+tech: ["python", "fastapi", "mcp"]
+github: "https://github.com/sairambokka"
+order: 7
 ---
 
 ## Overview

@@ -2,6 +2,11 @@
 title: "AI-Driven Firewall"
 excerpt: "High-performance AI firewall for real-time network packet classification with <50ms latency<br/>"
 collection: portfolio
+slug: "firewall"
+stat: "<50ms"
+tech: ["python", "pytorch", "quantization"]
+github: "https://github.com/sairambokka"
+order: 1
 ---
 
 ## Overview

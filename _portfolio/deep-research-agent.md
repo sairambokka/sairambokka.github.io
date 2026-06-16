@@ -2,6 +2,11 @@
 title: "LangChain Deep Research Agent"
 excerpt: "Sophisticated multi-agent system for comprehensive research and detailed report generation<br/>"
 collection: portfolio
+slug: "research"
+stat: "rag"
+tech: ["langchain", "mcp"]
+github: "https://github.com/sairambokka"
+order: 6
 ---
 
 ## Overview

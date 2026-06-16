@@ -2,6 +2,11 @@
 title: "Financial Analyzer"
 excerpt: "Full-stack financial analysis platform leveraging Claude AI for data-driven insights<br/>"
 collection: portfolio
+slug: "finance"
+stat: "full-stack"
+tech: ["next.js", "claude"]
+github: "https://github.com/sairambokka"
+order: 9
 ---
 
 ## Overview
