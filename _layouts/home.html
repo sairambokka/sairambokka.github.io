@@ -8,11 +8,22 @@ layout: compress
   {% include head/custom.html %}
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/tailwind.css' | relative_url }}?v={{ site.time | date: '%s' }}">
+  <script>
+    // apply saved theme before paint to avoid flash (default: dark)
+    (function () {
+      try {
+        if (localStorage.getItem('theme') === 'light') {
+          document.documentElement.classList.add('light');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body class="bg-bg text-fg font-body antialiased">
+<body class="text-fg font-body antialiased">
+  <canvas id="rain" class="fixed inset-0 -z-10 pointer-events-none opacity-[0.06]"></canvas>
   {{ content }}
-  <script src="{{ '/assets/js/home.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/home.js' | relative_url }}?v={{ site.time | date: '%s' }}"></script>
 </body>
 </html>

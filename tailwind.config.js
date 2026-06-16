@@ -11,9 +11,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: "#06080d", panel: "#0c1119", panel2: "#0f1622", line: "#172231",
-        fg: "#d7e2ee", dim: "#5d6b7d", dimmer: "#3a4656",
-        term: "#3ddc97", link: "#4d9fff", pink: "#ff5d73", amber: "#ffcf5c",
+        bg: "var(--c-bg)", panel: "var(--c-panel)", panel2: "var(--c-panel2)", line: "var(--c-line)",
+        fg: "var(--c-fg)", dim: "var(--c-dim)", dimmer: "var(--c-dimmer)",
+        term: "var(--c-term)", link: "var(--c-link)", pink: "var(--c-pink)", amber: "var(--c-amber)",
       },
       fontFamily: {
         disp: ['"Space Grotesk"', "system-ui", "sans-serif"],

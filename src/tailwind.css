@@ -2,6 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- theme tokens (dark default; .light overrides) ---- */
+:root {
+  --c-bg: #06080d; --c-panel: #0c1119; --c-panel2: #0f1622; --c-line: #172231;
+  --c-fg: #d7e2ee; --c-dim: #5d6b7d; --c-dimmer: #3a4656;
+  --c-term: #3ddc97; --c-link: #4d9fff; --c-pink: #ff5d73; --c-amber: #ffcf5c;
+}
+html.light {
+  --c-bg: #f7f8fa; --c-panel: #ffffff; --c-panel2: #f0f2f6; --c-line: #e2e6ed;
+  --c-fg: #1a2230; --c-dim: #5a6675; --c-dimmer: #97a1b0;
+  --c-term: #0f9d6b; --c-link: #1f6feb; --c-pink: #d6336c; --c-amber: #b7791f;
+}
+html { background: var(--c-bg); }
+/* beat academicpages main.css body{background:#fff} so theme follows our vars + canvas shows */
+body { background: transparent !important; color: var(--c-fg); }
+
+/* status bar bg follows theme (translucent over page) */
+.statusbar { background: color-mix(in srgb, var(--c-bg) 82%, transparent); }
+
 @layer components {
   /* ---- terminal window chrome (ported from A-terminal mockup) ---- */
   .term-crt { position:fixed; inset:0; pointer-events:none; z-index:30;
@@ -23,12 +41,12 @@
   .term-dots:hover .term-ic { opacity:1; }
   .term-r { background:#ff5f56; } .term-y { background:#ffbd2e; } .term-g { background:#27c93f; }
   .term-dot:focus-visible { outline:2px solid #fff; outline-offset:2px; }
-  .term-title { margin-left:10px; color:#5c6773; font-size:12px; }
+  .term-title { margin-left:10px; color:#5c6773; font-size:13px; }
   .term-title b { color:#3ddc97; }
   .term-body { flex:1; overflow-y:auto; padding:18px 20px; scroll-behavior:smooth; }
   .term-body .line { white-space:pre-wrap; word-break:break-word; }
   .term-hint { flex:0 0 auto; border-top:1px solid #1c2430; background:#0d121a; color:#5c6773;
-    font-size:11.5px; padding:7px 16px; display:flex; gap:18px; flex-wrap:wrap; }
+    font-size:13px; padding:8px 16px; display:flex; gap:18px; flex-wrap:wrap; }
   .term-hint b { color:#3ddc97; }
   /* terminal text colors */
   .t-muted{color:#5c6773}.t-green{color:#4ec9b0}.t-cyan{color:#56b6c2}.t-pink{color:#e06c75}
@@ -36,28 +54,79 @@
   .term-body a{color:#61afef;text-decoration:none;border-bottom:1px dotted #61afef}
   .term-body a:hover{color:#4ec9b0;border-color:#4ec9b0}
   .ps1{color:#98c379;white-space:pre}
-  #cmd{background:transparent;border:0;outline:0;color:#c5d1de;font:inherit;flex:1;caret-color:transparent}
+  #cmd{background:transparent;border:0;outline:0;color:#c5d1de;font:inherit;flex:1;caret-color:#4ec9b0;margin-left:2px}
   .inputline{display:flex;align-items:center}
-  .cursor{display:inline-block;width:9px;height:18px;background:#4ec9b0;vertical-align:-3px;
-    animation:tblink 1s steps(1) infinite;margin-left:1px}
-  @keyframes tblink{50%{opacity:0}}
   .ascii{color:#4ec9b0;font-size:12px;line-height:1.2}
 }
 
 @layer utilities {
-  /* effects Tailwind utilities can't express — keep minimal */
-  .glitch { position: relative; }
-  .glitch::before, .glitch::after { content: attr(data-t); position: absolute; inset: 0; overflow: hidden; }
-  .glitch::before { color: #ff5d73; animation: gl1 3s infinite steps(2) alternate-reverse; }
-  .glitch::after  { color: #4d9fff; animation: gl2 2.4s infinite steps(2) alternate-reverse; }
-  @keyframes gl1 {0%{clip-path:inset(0 0 85% 0);transform:translateX(-2px)}25%{clip-path:inset(45% 0 35% 0)}50%{clip-path:inset(72% 0 6% 0);transform:translateX(2px)}75%,100%{clip-path:inset(0 0 100% 0)}}
-  @keyframes gl2 {0%{clip-path:inset(62% 0 18% 0);transform:translateX(2px)}30%{clip-path:inset(12% 0 70% 0)}60%{clip-path:inset(38% 0 38% 0);transform:translateX(-2px)}85%,100%{clip-path:inset(0 0 100% 0)}}
   .blink { animation: blink 1s steps(1) infinite; }
   @keyframes blink {50%{opacity:0}}
   .reveal { opacity:0; transform:translateY(22px); }
   .reveal.in { opacity:1; transform:none; transition: opacity .6s, transform .6s cubic-bezier(.2,.7,.2,1); }
 }
+
+/* ---- glitch — proven effect, made always-on (hover gate removed) ---- */
+/* outside @layer so keyframes stay global & bind reliably */
+.glitch {
+  position: relative;
+  font-family: "Poppins", sans-serif;
+  color: var(--c-fg);
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+}
+.glitch::before {
+  animation: glitch 650ms infinite;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+  transform: translate(-0.025em, -0.0125em);
+}
+.glitch::after {
+  animation: glitch 375ms infinite;
+  clip-path: polygon(0 65%, 100% 20%, 100% 100%, 0 70%);
+  transform: translate(0.0125em, 0.025em);
+}
+@keyframes glitch {
+  0% {
+    color: rgba(255, 93, 115, 0.2);
+    text-shadow: 0.05em 0 0 #ff5d73, -0.025em -0.05em 0 #4d9fff,
+      0.025em 0.05em 0 #3ddc97;
+  }
+  14% {
+    text-shadow: 0.05em 0 0 #ff5d73, -0.025em -0.05em 0 #4d9fff,
+      0.025em 0.05em 0 #3ddc97;
+  }
+  15% {
+    color: #3ddc97;
+    text-shadow: -0.05em -0.025em 0 #ff5d73, 0.025em -0.025em 0 #4d9fff,
+      -0.05em -0.05em 0 #3ddc97;
+  }
+  49% {
+    text-shadow: -0.05em -0.025em 0 #ff5d73, 0.025em -0.025em 0 #4d9fff,
+      -0.05em -0.05em 0 #3ddc97;
+  }
+  50% {
+    text-shadow: 0.025em 0.05em 0 #ff5d73, -0.025em 0.05em 0 #4d9fff,
+      0 -0.05em 0 #3ddc97;
+  }
+  99% {
+    color: #4d9fff;
+    text-shadow: 0.025em 0.05em 0 #ff5d73, -0.025em 0.05em 0 #4d9fff,
+      0 -0.05em 0 #3ddc97;
+  }
+  100% {
+    text-shadow: -0.025em 0 0 #ff5d73, -0.025em -0.025em 0 #4d9fff,
+      -0.025em -0.05em 0 #3ddc97;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .glitch::before, .glitch::after { display: none; }
+  .glitch::before, .glitch::after { animation: none; opacity: 0; }
   .blink, .reveal { animation: none !important; opacity: 1; transform: none; }
+  .reveal { opacity: 1; transform: none; }
 }

@@ -20,3 +20,4 @@ assets/css/tailwind.css
 
 # Ignore folders related to IDEs
 .vscode/
+.DS_Store

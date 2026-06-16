@@ -7,13 +7,13 @@
   <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ cat about.md</span></div>
   <div class="grid md:grid-cols-[1.4fr_0.8fr] gap-10 items-start">
     <div class="reveal">
-      <h2 class="font-disp font-semibold text-[clamp(26px,4vw,40px)] tracking-[-0.02em] mb-[10px]">Fullstack first, security mind always.</h2>
+      <h2 class="font-disp font-semibold text-[clamp(26px,4vw,40px)] tracking-[-0.02em] mb-[10px]">Engineer first, security mind always.</h2>
       {% for para in p.about %}
       <p class="text-fg text-[17px] mb-4">{{ para }}</p>
       {% endfor %}
     </div>
     <div class="reveal bg-panel border border-line border-l-[3px] border-l-term rounded-xl p-5 font-mono text-[13.5px]">
-      <div class="text-term text-[11px] tracking-[0.12em] uppercase mb-[10px]">// current.status</div>
+      <div class="text-term text-[13px] tracking-[0.12em] uppercase mb-[10px]">// current.status</div>
       <div class="my-[7px]"><span class="text-fg font-bold">role</span> &nbsp;<span class="text-dim">Fullstack SWE @ Corca</span></div>
       <div class="my-[7px]"><span class="text-fg font-bold">stack</span> <span class="text-dim">Node · Next.js · WASM · TS</span></div>
       <div class="my-[7px]"><span class="text-fg font-bold">study</span> <span class="text-dim">MS Cybersecurity, UMBC</span></div>
@@ -25,19 +25,19 @@
 
 <!-- PROJECTS -->
 <section id="projects" class="py-[9vh] border-t border-line">
-  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~/projects $ ls -la</span> <span class="text-dimmer text-[12.5px]"># builds — agents, security, full-stack</span></div>
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~/projects $ ls -la</span> <span class="text-dimmer text-[13.5px]"># builds: agents, security, full-stack</span></div>
   <div class="grid [grid-template-columns:repeat(auto-fill,minmax(290px,1fr))] gap-[18px]">
     {% assign sorted = site.portfolio | sort: "order" %}
     {% for proj in sorted %}
     <a href="{{ proj.url | relative_url }}" class="reveal group relative bg-panel border border-line rounded-[14px] p-[22px] overflow-hidden transition hover:-translate-y-[5px] hover:border-term hover:shadow-[0_16px_46px_rgba(0,0,0,0.5)] no-underline">
       <div class="flex justify-between items-center mb-3">
-        <span class="font-mono text-[11.5px] text-dim">{{ proj.slug }}{% if proj.tech contains "typescript" or proj.tech contains "next.js" or proj.tech contains "react" or proj.tech contains "node" %}.ts{% else %}.py{% endif %}</span>
-        <span class="font-mono text-[11px] text-term border border-term/30 rounded-[5px] px-[7px] py-[2px]">{{ proj.stat }}</span>
+        <span class="font-mono text-[13px] text-dim">{{ proj.slug }}{% if proj.tech contains "typescript" or proj.tech contains "next.js" or proj.tech contains "react" or proj.tech contains "node" %}.ts{% else %}.py{% endif %}</span>
+        <span class="font-mono text-[13px] text-term border border-term/30 rounded-[5px] px-[7px] py-[2px]">{{ proj.stat }}</span>
       </div>
       <h3 class="font-disp font-semibold text-[19px] mb-2 tracking-[-0.01em] text-fg">{{ proj.title }}</h3>
       <p class="text-dim text-sm mb-4">{{ proj.excerpt | strip_html }}</p>
       <div class="flex gap-[7px] flex-wrap">
-        {% for t in proj.tech %}<span class="font-mono text-[11px] text-link bg-link/10 border border-link/20 rounded-[5px] px-2 py-[3px]">{{ t }}</span>{% endfor %}
+        {% for t in proj.tech %}<span class="font-mono text-[13px] text-link bg-link/10 border border-link/20 rounded-[5px] px-2 py-[3px]">{{ t }}</span>{% endfor %}
       </div>
       <span class="absolute right-5 bottom-[18px] text-term opacity-0 -translate-x-1 transition group-hover:opacity-100 group-hover:translate-x-0">→</span>
     </a>
@@ -72,9 +72,9 @@
   <div class="grid [grid-template-columns:repeat(auto-fit,minmax(230px,1fr))] gap-4">
     {% for s in site.data.skills %}
     <div class="reveal bg-panel border border-line rounded-xl p-5">
-      <div class="font-mono text-xs text-term tracking-[0.1em] uppercase mb-3">{{ s.group }}</div>
+      <div class="font-mono text-[13px] text-term tracking-[0.1em] uppercase mb-3">{{ s.group }}</div>
       <div class="flex gap-2 flex-wrap">
-        {% for it in s.items %}<span class="font-mono text-[12.5px] text-dim border border-line rounded-md px-[9px] py-1 transition hover:text-fg hover:border-dim hover:-translate-y-[2px]">{{ it }}</span>{% endfor %}
+        {% for it in s.items %}<span class="font-mono text-[13.5px] text-dim border border-line rounded-md px-[9px] py-1 transition hover:text-fg hover:border-dim hover:-translate-y-[2px]">{{ it }}</span>{% endfor %}
       </div>
     </div>
     {% endfor %}
@@ -90,7 +90,7 @@
       <h3 class="font-disp font-semibold text-[18px]">{{ e.degree }}</h3>
       <div class="text-link font-mono text-[13px] my-1 mb-[10px]">{{ e.school }}</div>
       <div class="text-dim text-sm">{{ e.meta }}</div>
-      <div class="mt-[10px]"><span class="inline-block font-mono text-xs text-term border border-term/30 rounded-md px-[9px] py-[3px]">{{ e.gpa }}</span></div>
+      <div class="mt-[10px]"><span class="inline-block font-mono text-[13px] text-term border border-term/30 rounded-md px-[9px] py-[3px]">{{ e.gpa }}</span></div>
     </div>
     {% endfor %}
   </div>
@@ -98,9 +98,14 @@
 
 <!-- CERTS -->
 <section class="py-[9vh] border-t border-line">
-  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ ls certs/</span></div>
-  <div class="reveal flex gap-2 flex-wrap">
-    {% for c in site.data.certs %}<span class="font-mono text-[13px] text-dim border border-line rounded-md px-[13px] py-2 transition hover:text-fg hover:border-dim">✓ {{ c }}</span>{% endfor %}
+  <div class="reveal font-mono text-sm text-dim mb-[30px]"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ ls certifications/</span> <span class="text-dimmer text-[13.5px]"># verified credentials</span></div>
+  <div class="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4">
+    {% for c in site.data.certs %}
+    <div class="reveal flex items-center gap-3 bg-panel border border-line rounded-xl p-[18px] transition hover:border-term hover:-translate-y-[3px] hover:shadow-[0_12px_36px_rgba(0,0,0,0.4)]">
+      <span class="shrink-0 grid place-items-center w-9 h-9 rounded-lg bg-term/10 border border-term/30 text-term text-[15px]">✓</span>
+      <span class="font-mono text-[13.5px] text-fg leading-snug">{{ c }}</span>
+    </div>
+    {% endfor %}
   </div>
 </section>
 
@@ -116,8 +121,8 @@
   </div>
 </section>
 
-<footer class="py-[30px] border-t border-line font-mono text-xs text-dimmer flex justify-between flex-wrap gap-[10px]">
-  <span>© 2026 {{ p.name }} · {{ p.location }} — built as a terminal session</span>
+<footer class="py-[30px] border-t border-line font-mono text-[13px] text-dimmer flex justify-between flex-wrap gap-[10px]">
+  <span>© 2026 {{ p.name }} · {{ p.location }} · built as a terminal session</span>
   <span>last login: today · <span class="text-term">● online</span></span>
 </footer>
 
