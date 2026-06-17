@@ -4,7 +4,12 @@
 
 <!-- back / nav -->
 <section class="pt-[6vh] pb-[5vh]">
-  <a href="{{ '/' | relative_url }}" class="reveal inline-block font-mono text-sm text-dim hover:text-term transition mb-[30px] no-underline">← cd ~</a>
+  <div class="reveal flex items-center justify-between mb-[30px]">
+    <a href="{{ '/' | relative_url }}" class="inline-block font-mono text-sm text-dim hover:text-term transition no-underline">← cd ~</a>
+    <button id="theme-toggle" aria-label="toggle light/dark theme" class="text-dim hover:text-term transition cursor-pointer leading-none w-[26px] h-[26px] flex items-center justify-center text-[20px] rounded-md border border-line hover:border-term" title="toggle theme">
+      <span class="theme-dark-icon">☾</span><span class="theme-light-icon hidden">☀</span>
+    </button>
+  </div>
   <div class="reveal font-mono text-sm text-dim mb-3"><span class="text-term">sairam@dev</span> <span class="text-fg">~ $ git activity --graph</span></div>
   <h1 class="reveal font-disp font-semibold text-[clamp(30px,6vw,52px)] tracking-[-0.02em] leading-none mb-[10px]">
     <span id="contrib-count" data-total="{{ site.data.contributions.total | default: 0 }}">0</span>
