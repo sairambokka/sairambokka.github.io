@@ -1,44 +1,7 @@
 {
-  "total": 342,
-  "updated": "2026-06-22",
+  "total": 357,
+  "updated": "2026-06-29",
   "weeks": [
-    [
-      {
-        "date": "2025-06-22",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-06-23",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-06-24",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-06-25",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-06-26",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-06-27",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-06-28",
-        "count": 0,
-        "level": 0
-      }
-    ],
     [
       {
         "date": "2025-06-29",
@@ -1934,6 +1897,43 @@
       },
       {
         "date": "2026-06-22",
+        "count": 2,
+        "level": 1
+      },
+      {
+        "date": "2026-06-23",
+        "count": 1,
+        "level": 1
+      },
+      {
+        "date": "2026-06-24",
+        "count": 6,
+        "level": 2
+      },
+      {
+        "date": "2026-06-25",
+        "count": 6,
+        "level": 2
+      },
+      {
+        "date": "2026-06-26",
+        "count": 1,
+        "level": 1
+      },
+      {
+        "date": "2026-06-27",
+        "count": 2,
+        "level": 1
+      }
+    ],
+    [
+      {
+        "date": "2026-06-28",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-06-29",
         "count": 0,
         "level": 0
       }
@@ -1944,38 +1944,38 @@
     "pullRequests": 2,
     "issues": 1,
     "reviews": 0,
-    "private": 187
+    "private": 205
   },
   "languages": [
     {
       "name": "TypeScript",
       "color": "#3178c6",
-      "pct": 49.4
+      "pct": 48.5
     },
     {
       "name": "MDX",
       "color": "#fcb32c",
-      "pct": 23.8
+      "pct": 23.4
     },
     {
       "name": "HTML",
       "color": "#e34c26",
-      "pct": 11.7
+      "pct": 11.4
     },
     {
       "name": "JavaScript",
       "color": "#f1e05a",
-      "pct": 9
+      "pct": 8.8
+    },
+    {
+      "name": "Python",
+      "color": "#3572A5",
+      "pct": 3.1
     },
     {
       "name": "CSS",
       "color": "#663399",
       "pct": 2.3
-    },
-    {
-      "name": "Python",
-      "color": "#3572A5",
-      "pct": 1.2
     },
     {
       "name": "Jupyter Notebook",
