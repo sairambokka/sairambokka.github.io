@@ -1,44 +1,7 @@
 {
-  "total": 357,
-  "updated": "2026-06-29",
+  "total": 382,
+  "updated": "2026-07-06",
   "weeks": [
-    [
-      {
-        "date": "2025-06-29",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-06-30",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-07-01",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-02",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-07-03",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-04",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-07-05",
-        "count": 0,
-        "level": 0
-      }
-    ],
     [
       {
         "date": "2025-07-06",
@@ -1934,6 +1897,43 @@
       },
       {
         "date": "2026-06-29",
+        "count": 7,
+        "level": 2
+      },
+      {
+        "date": "2026-06-30",
+        "count": 10,
+        "level": 3
+      },
+      {
+        "date": "2026-07-01",
+        "count": 6,
+        "level": 2
+      },
+      {
+        "date": "2026-07-02",
+        "count": 6,
+        "level": 2
+      },
+      {
+        "date": "2026-07-03",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-04",
+        "count": 0,
+        "level": 0
+      }
+    ],
+    [
+      {
+        "date": "2026-07-05",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-06",
         "count": 0,
         "level": 0
       }
@@ -1944,7 +1944,7 @@
     "pullRequests": 2,
     "issues": 1,
     "reviews": 0,
-    "private": 205
+    "private": 231
   },
   "languages": [
     {
