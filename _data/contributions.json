@@ -1,44 +1,7 @@
 {
-  "total": 414,
-  "updated": "2026-07-13",
+  "total": 450,
+  "updated": "2026-07-20",
   "weeks": [
-    [
-      {
-        "date": "2025-07-13",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-14",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-07-15",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-16",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-17",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-07-18",
-        "count": 1,
-        "level": 1
-      },
-      {
-        "date": "2025-07-19",
-        "count": 0,
-        "level": 0
-      }
-    ],
     [
       {
         "date": "2025-07-20",
@@ -1907,7 +1870,7 @@
       },
       {
         "date": "2026-07-08",
-        "count": 12,
+        "count": 11,
         "level": 4
       },
       {
@@ -1934,17 +1897,54 @@
       },
       {
         "date": "2026-07-13",
+        "count": 10,
+        "level": 3
+      },
+      {
+        "date": "2026-07-14",
+        "count": 6,
+        "level": 2
+      },
+      {
+        "date": "2026-07-15",
+        "count": 9,
+        "level": 3
+      },
+      {
+        "date": "2026-07-16",
+        "count": 9,
+        "level": 3
+      },
+      {
+        "date": "2026-07-17",
+        "count": 8,
+        "level": 3
+      },
+      {
+        "date": "2026-07-18",
+        "count": 0,
+        "level": 0
+      }
+    ],
+    [
+      {
+        "date": "2026-07-19",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-20",
         "count": 0,
         "level": 0
       }
     ]
   ],
   "breakdown": {
-    "commits": 119,
+    "commits": 118,
     "pullRequests": 2,
     "issues": 1,
     "reviews": 0,
-    "private": 265
+    "private": 303
   },
   "languages": [
     {
