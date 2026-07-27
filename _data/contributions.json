@@ -1,44 +1,7 @@
 {
-  "total": 450,
-  "updated": "2026-07-20",
+  "total": 472,
+  "updated": "2026-07-27",
   "weeks": [
-    [
-      {
-        "date": "2025-07-20",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-21",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-07-22",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-23",
-        "count": 2,
-        "level": 1
-      },
-      {
-        "date": "2025-07-24",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-25",
-        "count": 0,
-        "level": 0
-      },
-      {
-        "date": "2025-07-26",
-        "count": 1,
-        "level": 1
-      }
-    ],
     [
       {
         "date": "2025-07-27",
@@ -1902,13 +1865,13 @@
       },
       {
         "date": "2026-07-14",
-        "count": 6,
+        "count": 5,
         "level": 2
       },
       {
         "date": "2026-07-15",
-        "count": 9,
-        "level": 3
+        "count": 7,
+        "level": 2
       },
       {
         "date": "2026-07-16",
@@ -1934,17 +1897,54 @@
       },
       {
         "date": "2026-07-20",
+        "count": 8,
+        "level": 3
+      },
+      {
+        "date": "2026-07-21",
+        "count": 14,
+        "level": 4
+      },
+      {
+        "date": "2026-07-22",
+        "count": 5,
+        "level": 2
+      },
+      {
+        "date": "2026-07-23",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-24",
+        "count": 3,
+        "level": 1
+      },
+      {
+        "date": "2026-07-25",
+        "count": 0,
+        "level": 0
+      }
+    ],
+    [
+      {
+        "date": "2026-07-26",
+        "count": 0,
+        "level": 0
+      },
+      {
+        "date": "2026-07-27",
         "count": 0,
         "level": 0
       }
     ]
   ],
   "breakdown": {
-    "commits": 118,
+    "commits": 119,
     "pullRequests": 2,
     "issues": 1,
     "reviews": 0,
-    "private": 303
+    "private": 324
   },
   "languages": [
     {
